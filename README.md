@@ -26,8 +26,8 @@ This project seek to predict the message from disaster in multicategories.
  ```
 # Requirements
 
-* scikit-learn==0.19.1 \
-* pandas==0.23.3 \ 
-* numpy==1.12.1 \
-* nltk==3.2.5 \
+* scikit-learn==0.19.1 
+* pandas==0.23.3 
+* numpy==1.12.1 
+* nltk==3.2.5 
 * lightgbm==3.1.1
