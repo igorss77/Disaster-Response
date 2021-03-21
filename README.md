@@ -3,7 +3,7 @@
 This project seek to predict the message from disaster in multicategories.
 
 # Files
-`- app
+`- app`
 | - template
 | |- master.html  # main page of web app
 | |- go.html  # classification result page of web app
