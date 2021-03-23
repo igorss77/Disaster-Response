@@ -46,4 +46,4 @@ To run the app:
 `python run.py`
 
 # Ackowledgements:
-Udacity and their mentors the help to develop this project
+Udacity and their mentors the help to develop this project. Also, the data provided by [FiveThirtyEight](https://fivethirtyeight.com/)
