@@ -44,3 +44,6 @@ The follow command will train your model:
 To run the app:
 
 `python run.py`
+
+# Ackowledgements:
+Udacity and their mentors the help to develop this project
