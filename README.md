@@ -8,6 +8,7 @@ This project seek to predict the message from disaster in multicategories.
 | - template
 | |- master.html  # main page of web app
 | |- go.html  # classification result page of web app
+| |- webpage_print.png # print page of web app
 |- run.py  # Flask file that runs app
 
 - data
