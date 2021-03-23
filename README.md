@@ -31,8 +31,9 @@ This project seek to predict the message from disaster in multicategories.
 * numpy==1.12.1 
 * nltk==3.2.5 
 * lightgbm==3.1.1
+* 
 # How to use
-In a terminal, use the follow command to execute `etl pipeline`:
+In a terminal, use the follow command to execute etl pipeline:
 
 `python process_data.py disaster_messages.csv disaster_categories.csv DisasterResponse.db`
 
