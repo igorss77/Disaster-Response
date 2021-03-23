@@ -33,8 +33,13 @@ This project seek to predict the message from disaster in multicategories.
 * lightgbm==3.1.1
 # How to use
 In a terminal, use the follow command to execute `etl pipeline` : \
+
 `python process_data.py disaster_messages.csv disaster_categories.csv DisasterResponse.db`\
+
 The follow command will train your model:\
+
 `python train_classifier.py ../data/DisasterResponse.db classifier.pkl`\ 
+
 To run the app:\
+
 `python run.py`
