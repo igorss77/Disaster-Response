@@ -1,6 +1,8 @@
 import json
 import plotly
 import pandas as pd
+import nltk
+nltk.download(['punkt', 'wordnet','stopwords'])
 from nltk.tokenize import word_tokenize
 from nltk.util import ngrams
 from nltk.stem import WordNetLemmatizer
@@ -12,7 +14,6 @@ from plotly.graph_objs import Bar
 import joblib
 from sqlalchemy import create_engine
 import re
-
 
 app = Flask(__name__)
 
@@ -71,7 +72,7 @@ def index():
          'layout' : {
                     'title' : 'Is the message related with water?',
                     'yaxis' : {'title' : 'Count'},
-                    'xaxis' : {'title' : 'Category'}
+                    'xaxis' : {'title' : 'Water'}
                     },
         },
         {
