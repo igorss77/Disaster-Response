@@ -76,7 +76,8 @@ def clean_data(df):
     # remove duplicated
     
     df = df.drop_duplicates()
-    
+    # replace value '2' for the minor category
+    df.loc[df['related']>1,'related'] = 0
     return df
 def save_data(df, database_filename):
     '''
