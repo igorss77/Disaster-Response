@@ -13,12 +13,13 @@ from sklearn.pipeline import Pipeline, FeatureUnion
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
 from sklearn.multioutput import MultiOutputClassifier
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sqlalchemy import create_engine 
 from sklearn.model_selection import GridSearchCV
 from sklearn.linear_model import SGDClassifier
+from workspace_utils import active_session
 import pickle
 
 def load_data(database_filepath):
@@ -96,15 +97,15 @@ def build_model():
     
     ''' 
     pipeline = Pipeline([
-        ('vect', CountVectorizer(tokenizer=tokenize,max_df=1.0,max_features=None,ngram_range=(1, 2))),
+        ('vect', CountVectorizer(tokenizer=tokenize)),
         ('tfidf', TfidfTransformer()),
-        ('clf', MultiOutputClassifier(SGDClassifier(loss="hinge",alpha=0.00005,tol=0.001,max_iter=1000)))])
+        ('clf', MultiOutputClassifier(AdaBoostClassifier()))])
 
 
 
-    parameters = {  'clf__estimator__penalty': ['l1', 'l2']}
+    parameters = {  'clf__estimator__n_estimators': [30, 40]}
 
-    model = GridSearchCV(pipeline, param_grid=parameters,cv=4, verbose=12, n_jobs=-1)
+    model = GridSearchCV(pipeline, param_grid=parameters,cv=2, verbose=12, n_jobs=-1)
     
     return model
 
@@ -169,9 +170,9 @@ def main():
         
         print('Building model...')
         model = build_model()
-        
-        print('Training model...')
-        model.fit(X_train, Y_train)
+        with active_session():
+            print('Training model...')
+            model.fit(X_train, Y_train)
         
         print('Evaluating model...')
         evaluate_model(model, X_test, Y_test, category_names)
