@@ -103,7 +103,7 @@ def build_model():
 
 
 
-    parameters = {  'clf__estimator__n_estimators': [30, 40]}
+    parameters = {  'clf__estimator__n_estimators': [300, 400]}
 
     model = GridSearchCV(pipeline, param_grid=parameters,cv=2, verbose=12, n_jobs=-1)
     
@@ -130,8 +130,8 @@ def evaluate_model(model, X_test, y_test, category_names):
     ''' 
 
     y_pred = model.predict(X_test)
-    report= classification_report(y_pred,y_test, target_names=category_names)
-    
+    report= classification_report(y_test,y_pred, target_names=category_names)
+    print(classification_report(y_test,y_pred, target_names=category_names))
     temp=[]
           
     for item in report.split("\n"):
@@ -166,7 +166,7 @@ def main():
         database_filepath, model_filepath = sys.argv[1:]
         print('Loading data...\n    DATABASE: {}'.format(database_filepath))
         X, Y, category_names = load_data(database_filepath)
-        X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2)
+        X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2,random_state=42,shuffle=True)
         
         print('Building model...')
         model = build_model()
